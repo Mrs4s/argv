@@ -1,8 +1,9 @@
 # argv
 
 Extremely minimalistic argument parser for Go CLI apps. There is only
-a single function `Parse` that returns a map[string]string of all key/value
-pairs for arguments provided.
+a single function `Parse` that returns a struct of all key/value
+pairs for arguments provided in addition to any arguments provided
+without corresponding keys.
 
 ## Rules
 
@@ -10,6 +11,8 @@ pairs for arguments provided.
 2. The value immediately following a key is considered that keys value.
   - NOTE: if the value of a key starts with a hyphen, you need to wrap the value in quotes,
 otherwise it will be considered another key.
+3. If an argument is provided without a key, it will be included in a []string field
+of the returned struct called `nokeys`.
 
 ## Install
 
@@ -39,9 +42,10 @@ func main() {
 
 ```sh
 $ go build
-$ ./test -arg1 123 --arg2 456
+$ ./test -arg1 123 --arg2 456 nokeyarg
 # Arguments: map[arg1:123 arg2:456]
+# Arguments: {[nokeyarg] map[arg1:123 arg2:456]}
 
-$ ./test -arg1 123 --arg2 --arg3 456 --arg4
-# Arguments: map[arg1:123 arg2: arg3:456 arg4:]
+$ ./test -arg1 123 --arg2 --arg3 456 nokeyarg --arg4
+# Arguments: {[nokeyarg] map[arg1:123 arg2: arg3:456 arg4:]}
 ```
