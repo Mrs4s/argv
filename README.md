@@ -35,6 +35,11 @@ import (
 )
 
 func main() {
+  // theArgs is a:
+  // struct{
+  //  nokeys []string
+	//  keys   map[string]string
+  //}
   theArgs := argv.Parse(os.Args[1:])
   fmt.Println("Arguments:", theArgs)
 }
@@ -43,7 +48,6 @@ func main() {
 ```sh
 $ go build
 $ ./test -arg1 123 --arg2 456 nokeyarg
-# Arguments: map[arg1:123 arg2:456]
 # Arguments: {[nokeyarg] map[arg1:123 arg2:456]}
 
 $ ./test -arg1 123 --arg2 --arg3 456 nokeyarg --arg4
