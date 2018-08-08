@@ -38,7 +38,7 @@ func main() {
   // theArgs is a:
   // struct{
   //  nokeys []string
-	//  keys   map[string]string
+  //  keys   map[string]string
   //}
   theArgs := argv.Parse(os.Args[1:])
   fmt.Println("Arguments:", theArgs)
