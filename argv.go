@@ -3,8 +3,8 @@ package argv
 // Args provides a way to store both a list of provided arguments
 // without keys in addition to the key'ed values.
 type Args struct {
-	nokeys []string
-	keys   map[string]string
+	Nokeys []string
+	Keys   map[string]string
 }
 
 // Parse takes in a slice of arguments (probably from os.Args) and
@@ -13,7 +13,7 @@ func Parse(rawArgs []string) Args {
 	var allTheArgs Args
 	var nokeyArgsIndices []int
 	flags := make(map[int]string)
-	allTheArgs.keys = make(map[string]string)
+	allTheArgs.Keys = make(map[string]string)
 	for i, arg := range rawArgs {
 		if arg[0:2] == "--" {
 			flags[i] = arg[2:]
@@ -26,15 +26,15 @@ func Parse(rawArgs []string) Args {
 
 	for indexOfKey, key := range flags {
 		if indexOfKey+1 < len(rawArgs) {
-			allTheArgs.keys[key] = checkAndReturnValue(rawArgs, indexOfKey)
+			allTheArgs.Keys[key] = checkAndReturnValue(rawArgs, indexOfKey)
 		} else {
-			allTheArgs.keys[key] = ""
+			allTheArgs.Keys[key] = ""
 		}
 	}
 
 	for _, ind := range nokeyArgsIndices {
 		if getValidValue(rawArgs[ind-1]) != "" {
-			allTheArgs.nokeys = append(allTheArgs.nokeys, rawArgs[ind])
+			allTheArgs.Nokeys = append(allTheArgs.Nokeys, rawArgs[ind])
 		}
 	}
 

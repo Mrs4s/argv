@@ -8,11 +8,11 @@ without corresponding keys.
 ## Rules
 
 1. Any arguments that start with one or two hyphens (-arg or --arg) are considered keys
-2. The value immediately following a key is considered that keys value.
+2. The value immediately following a key is considered that key's value.
   - NOTE: if the value of a key starts with a hyphen, you need to wrap the value in quotes,
 otherwise it will be considered another key.
 3. If an argument is provided without a key, it will be included in a []string field
-of the returned struct called `nokeys`.
+of the returned struct called `Nokeys`.
 
 ## Install
 
@@ -37,8 +37,8 @@ import (
 func main() {
   // theArgs is a:
   // struct{
-  //  nokeys []string
-  //  keys   map[string]string
+  //  Nokeys []string
+  //  Keys   map[string]string
   //}
   theArgs := argv.Parse(os.Args[1:])
   fmt.Println("Arguments:", theArgs)
