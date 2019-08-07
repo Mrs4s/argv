@@ -33,8 +33,10 @@ func Parse(rawArgs []string) Args {
 	}
 
 	for _, ind := range nokeyArgsIndices {
-		if getValidValue(rawArgs[ind-1]) != "" {
-			allTheArgs.Nokeys = append(allTheArgs.Nokeys, rawArgs[ind])
+		if ind > 0 {
+			if getValidValue(rawArgs[ind-1]) != "" {
+				allTheArgs.Nokeys = append(allTheArgs.Nokeys, rawArgs[ind])
+			}
 		}
 	}
 

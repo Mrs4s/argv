@@ -5,7 +5,7 @@ import (
 )
 
 func TestParse(t *testing.T) {
-	args := []string{"./mycommand", "-abc", "123", "--testing", "omg", "NOKEY1", "NOKEY2", "-haha", "--haha2"}
+	args := []string{"./mycommand", "123", "-abc", "123", "--testing", "omg", "NOKEY1", "NOKEY2", "-haha", "--haha2"}
 	myArgs := Parse(args[1:])
 
 	if myArgs.Nokeys[0] != "NOKEY1" || myArgs.Nokeys[1] != "NOKEY2" {
